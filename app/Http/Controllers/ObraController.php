@@ -30,7 +30,7 @@ class ObraController extends Controller
      */
     public function create()
     {
-        //
+        return view('incluir');
     }
 
     /**
@@ -41,7 +41,18 @@ class ObraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cad=$this->objObra->create([
+            'titulo'=>$request->titulo,
+            'nome_artista'=>$request->nome_artista,
+            'altura'=>$request->altura,
+            'largura'=>$request->largura,
+            'profundidade'=>$request->profundidade,
+            'preco'=>$request->preco
+        ]);
+
+        if($cad){
+            return redirect('obras');
+        }
     }
 
     /**
@@ -52,7 +63,8 @@ class ObraController extends Controller
      */
     public function show($id)
     {
-        //
+        $obra=$this->objObra->find($id);
+        return view('dados', compact('obra'));
     }
 
     /**
