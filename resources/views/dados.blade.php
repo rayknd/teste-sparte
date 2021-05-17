@@ -24,7 +24,7 @@
                 <a href="{{url("obras/$obra->id/edit")}}"> 
                     <button class="btn btn-success btn-sm">Editar</button>
                 </a>
-                <a href="">
+                <a href="{{url("obras/$obra->id")}}" class="js-del">
                     <button class="btn btn-danger btn-sm">Deletar</button>
                 </a>
         </div>

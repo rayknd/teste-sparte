@@ -21,7 +21,7 @@
                 <button class="btn btn-primary col-sm-2 offset-sm-9">Incluir</button>
             </a>
         </div>
-
+        @csrf
         <div class="row row-cols-1 row-cols-md-4 g-4">
         @foreach($obras as $obra)
             <div class="col">
@@ -41,7 +41,7 @@
                          <a href="{{url("obras/$obra->id/edit")}}" > 
                             <button class="btn btn-success btn-sm">Editar</button>
                          </a>
-                         <a href="">
+                         <a href="{{url("obras/$obra->id")}}" class="js-del">
                             <button class="btn btn-danger btn-sm">Deletar</button>
                          </a>
                     </div>
