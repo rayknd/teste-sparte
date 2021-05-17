@@ -21,7 +21,7 @@
         </div>
 
         <div class="col-md-6 offset-md-6">
-                <a href="" class=""> 
+                <a href="{{url("obras/$obra->id/edit")}}"> 
                     <button class="btn btn-success btn-sm">Editar</button>
                 </a>
                 <a href="">

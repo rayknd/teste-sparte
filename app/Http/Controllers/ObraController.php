@@ -75,7 +75,8 @@ class ObraController extends Controller
      */
     public function edit($id)
     {
-        //
+        $obra=$this->objObra->find($id);
+        return view('incluir', compact('obra'));
     }
 
     /**
@@ -87,7 +88,19 @@ class ObraController extends Controller
      */
     public function update(ObraRequest $request, $id)
     {
-        //
+        $this->objObra->where(['id'=>$id])->update([
+            'titulo'=>$request->titulo,
+            'nome_artista'=>$request->nome_artista,
+            'altura'=>$request->altura,
+            'largura'=>$request->largura,
+            'profundidade'=>$request->profundidade,
+            'preco'=>$request->preco
+        ]);
+        
+        
+        return redirect('obras');
+
+
     }
 
     /**
