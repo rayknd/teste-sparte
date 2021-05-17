@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\ObraRequest;
 use App\Models\ModelObra;
 class ObraController extends Controller
 {   
@@ -39,7 +39,7 @@ class ObraController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ObraRequest $request)
     {
         $cad=$this->objObra->create([
             'titulo'=>$request->titulo,
@@ -85,7 +85,7 @@ class ObraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ObraRequest $request, $id)
     {
         //
     }
