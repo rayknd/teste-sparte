@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ObraRequest;
 use App\Models\ModelObra;
+use Illuminate\Support\Facades\Storage;
+
 class ObraController extends Controller
 {   
     private $objObra;
@@ -29,7 +31,7 @@ class ObraController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   
         return view('incluir');
     }
 
@@ -41,13 +43,26 @@ class ObraController extends Controller
      */
     public function store(ObraRequest $request)
     {
+
+        $imagem;
+        //Upload da imagem
+        if($request->hasFile('imagem') && $request->file('imagem')->isValid()){
+            $requestImage = $request->imagem;
+            $extension = \File::extension($requestImage);
+            $imageName = md5($requestImage->getClientOriginalName().strtotime('now')). "." . $extension;
+
+            $requestImage->move(public_path('img/events'), $imageName);
+            $imagem=$imageName;
+        }
+
         $cad=$this->objObra->create([
             'titulo'=>$request->titulo,
             'nome_artista'=>$request->nome_artista,
             'altura'=>$request->altura,
             'largura'=>$request->largura,
             'profundidade'=>$request->profundidade,
-            'preco'=>$request->preco
+            'preco'=>$request->preco,
+            'imagem'=>$imagem
         ]);
 
         if($cad){
@@ -110,7 +125,10 @@ class ObraController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
+    {   
+        
+        $obra=$this->objObra->find($id);
+        \File::delete("img/events/{$this->objObra->imagem}");
         $del=$this->objObra->destroy($id);
         
         return($del)?"sim":"não";

@@ -20,7 +20,7 @@
          <form name="formEdit" id="formEdit" method="POST" action="{{url("obras/$obra->id")}}">
             @method('PUT')
         @else
-            <form name="formCad" id="formCad" method="POST" action="{{url('obras')}}">
+            <form name="formCad" id="formCad" method="POST" action="{{url('obras')}}" enctype="multipart/form-data">
         @endif
 
             @csrf
@@ -48,7 +48,7 @@
                     </div>
                     <div class="col-sm-2">
                         <input class="form-control mt-3 mb-4" type="text" id="profundidade" name="profundidade" 
-                            value="{{$obra->profundidade}}" placeholder="Profundidade" required/>
+                            value="{{$obra->profundidade ?? ''}}" placeholder="Profundidade" required/>
                     </div>
                 
                 </div>
@@ -57,6 +57,11 @@
                     <input class="form-control mt-3 mb-4" type="text" id="preco" name="preco" 
                         value="{{$obra->preco ?? ''}}" placeholder="Preço" required/>
                     </div>
+                    @if(!isset($obra))
+                    <div class="col-sm-1 offset-sm-1">
+                        <input class="form-control-file mt-3 mb-4" type="file" id="imagem" name="imagem" required/>
+                    </div>
+                    @endif
                 </div>
                 <input type="submit" class="btn btn-primary col-sm-2 offset-sm-5" value="Salvar"></input>
                

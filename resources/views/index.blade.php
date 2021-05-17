@@ -28,7 +28,7 @@
             
                 <div class="card" style="width: 18rem;">
                     <a href="{{url("obras/$obra->id")}}">     
-                        <img class="card-img-top" src="..." alt="Card image cap">
+                        <img class="card-img-top" src="img/events/{{"$obra->imagem"}}" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">{{$obra->nome_artista}}</h5>
                             <p class="card-text">"{{$obra->titulo}}"</p> 
